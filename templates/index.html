@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h2 class="h4 mb-0">
+                    <i class="fas fa-calculator me-2"></i>Generate Your Diet Plan
+                </h2>
+            </div>
+            <div class="card-body">
+                <form id="dietForm" action="{{ url_for('generate_plan') }}" method="post">
+                    <div class="mb-3">
+                        <label for="height" class="form-label">Height (cm)</label>
+                        <input type="number" class="form-control" id="height" name="height" min="50" max="250" step="0.1" required>
+                        <div class="form-text">Enter your height in centimeters</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="weight" class="form-label">Weight (kg)</label>
+                        <input type="number" class="form-control" id="weight" name="weight" min="30" max="300" step="0.1" required>
+                        <div class="form-text">Enter your weight in kilograms</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Gender</label>
+                        <div class="d-flex">
+                            <div class="form-check me-4">
+                                <input class="form-check-input" type="radio" name="gender" id="male" value="male" required checked>
+                                <label class="form-check-label" for="male">
+                                    <i class="fas fa-mars me-1"></i>Male
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
+                                <label class="form-check-label" for="female">
+                                    <i class="fas fa-venus me-1"></i>Female
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="age" class="form-label">Age (years)</label>
+                        <input type="number" class="form-control" id="age" name="age" min="18" max="120" required>
+                        <div class="form-text">Enter your age in years</div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="fitness_goal" class="form-label">Fitness Goal</label>
+                        <select class="form-select" id="fitness_goal" name="fitness_goal" required>
+                            <option value="" selected disabled>Select your goal</option>
+                            <option value="Lose Weight">Lose Weight</option>
+                            <option value="Maintain Weight">Maintain Weight</option>
+                            <option value="Gain Muscle">Gain Muscle</option>
+                        </select>
+                        <div class="form-text">Select your primary fitness goal</div>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plate-wheat me-2"></i>Generate Diet Plan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header bg-info text-white">
+                <h3 class="h5 mb-0">
+                    <i class="fas fa-info-circle me-2"></i>How It Works
+                </h3>
+            </div>
+            <div class="card-body">
+                <ol class="mb-0">
+                    <li class="mb-2">Enter your personal metrics (height, weight, gender, age)</li>
+                    <li class="mb-2">Select your fitness goal</li>
+                    <li class="mb-2">We calculate your Basal Metabolic Rate (BMR) using the Mifflin-St Jeor Equation</li>
+                    <li class="mb-2">Calorie needs are adjusted based on your fitness goal</li>
+                    <li>A personalized diet plan is generated with meal suggestions and calorie distribution</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
